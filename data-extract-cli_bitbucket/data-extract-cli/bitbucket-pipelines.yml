@@ -1,0 +1,51 @@
+definitions:
+  buildArtifacts: &build-artifacts
+    script:
+      - apt-get update
+      - apt-get install -y zip
+      - make setup
+      - make package
+
+pipelines:
+  branches:
+    staging:
+      - step:
+          name: build artifacts
+          image: python:3.8
+          <<: *build-artifacts
+          artifacts:
+            - dist.zip
+      - step:
+          name: upload artifacts
+          deployment: staging
+          script:
+            - mv dist.zip staging.zip
+            - pipe: atlassian/bitbucket-upload-file:0.3.4
+              variables:
+                BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+                BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+                FILENAME: "staging.zip"
+
+    master:
+      - step:
+          name: build artifacts
+          image: python:3.8
+          <<: *build-artifacts
+          artifacts:
+            - dist.zip
+      - step:
+          max-time: 5
+          name: increment version
+          image: atlassian/default-image:latest
+          script:
+            - git fetch --tags
+            - ./versioning.sh > version
+          artifacts:
+            - version
+      - step:
+          name: upload artifacts
+          deployment: production
+          script:
+            - export VERSION=$(cat version)
+            - mv dist.zip $(echo $VERSION).zip
+            - curl -X POST "https://${BITBUCKET_USERNAME}:${BITBUCKET_APP_PASSWORD}@api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads" --form files=@"${VERSION}.zip"

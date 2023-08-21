@@ -1,0 +1,12 @@
+{
+	"columns": [
+		"MSISDN",
+		"ADVANCE_ID",
+		"CHANNEL_ID",
+		"LOAN_DATE",
+		"LOAN_AMOUNT",
+		"SERVICE_FEE",
+		"STATUS_ID",
+		"PROFILE_TIER_ID"
+	]
+}

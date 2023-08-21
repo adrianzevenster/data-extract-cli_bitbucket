@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+jinja2 = "*"
+click = "*"
+pandas = "*"
+sqlalchemy = "*"
+mysqlclient = "*"
+python-decouple = "*"
+smart-open = {extras = ["s3"], version = "*"}
+pyfiglet = "*"
+nanoid = "*"
+
+[dev-packages]
+autopep8 = "*"
+pytest = "*"
+behave = "*"
+pyinstaller = "*"
+
+[requires]
+python_version = "3.8"
