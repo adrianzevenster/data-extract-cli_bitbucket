@@ -1,0 +1,14 @@
+{
+	"telco_name": "MTC", // MTC|TMCEL|DIGICELL|DIGIBELIZE
+	"datasets": ["lending_advances.sql","lending_payments.sql", "profiler_recharges.sql"],
+	"keep_local_data": false,
+	"template_directory": "", // optional - absolute path
+	"filters": {
+		"tier_ids": "1,2,3", // optional
+		"loan_start_date": "2022-06-01 00:00:00",
+		"loan_end_date": "2022-06-30 23:59:59",
+		"historical_start_date": "2021-12-01",
+		"historical_end_date": "2022-07-31",
+		"msisdn_constraint": "264%" // optional
+	}
+}

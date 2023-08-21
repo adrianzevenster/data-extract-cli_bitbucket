@@ -1,0 +1,7 @@
+{
+	"columns": [
+		"MSISDN",
+		"RECHARGE_DATE",
+		"RECHARGE_AMOUNT"
+	]
+}
