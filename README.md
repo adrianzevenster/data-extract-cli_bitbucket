@@ -60,7 +60,3 @@ https://jinja.palletsprojects.com/en/3.1.x/
 https://click.palletsprojects.com/en/8.1.x/  
 https://pandas.pydata.org/  
 https://dev.mysql.com/doc/connector-python/en/  
-
-### Signed
-Henk van Zyl (Symbyte)  
-Alexander Glöss (Symbyte)
